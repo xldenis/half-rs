@@ -324,6 +324,7 @@ name = "half"
 version = "2.4.1"
 dependencies = [
  "bincode",
+ "bytecheck",
  "bytemuck",
  "cfg-if",
  "criterion",

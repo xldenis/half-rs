@@ -17,6 +17,8 @@ use core::{
     num::ParseFloatError,
     str::FromStr,
 };
+#[cfg(feature = "get_size")]
+use get_size::GetSize;
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 #[cfg(feature = "zerocopy")]
@@ -41,9 +43,10 @@ pub(crate) mod convert;
     derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize)
 )]
 #[cfg_attr(feature = "rkyv", archive(resolver = "Bf16Resolver"))]
+#[cfg_attr(feature = "rkyv", archive(check_bytes))]
 #[cfg_attr(feature = "bytemuck", derive(Zeroable, Pod))]
 #[cfg_attr(feature = "zerocopy", derive(AsBytes, FromBytes))]
-#[cfg_attr(feature = "get_size", derive(get_size::GetSize))]
+#[cfg_attr(feature = "get_size", derive(GetSize))]
 #[cfg_attr(feature = "bincode", derive(bincode::Encode, bincode::Decode))]
 #[cfg_attr(kani, derive(kani::Arbitrary))]
 pub struct bf16(u16);

@@ -42,6 +42,7 @@ pub(crate) mod arch;
     derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize)
 )]
 #[cfg_attr(feature = "rkyv", archive(resolver = "F16Resolver"))]
+#[cfg_attr(feature = "rkyv", archive(check_bytes))]
 #[cfg_attr(feature = "bytemuck", derive(Zeroable, Pod))]
 #[cfg_attr(feature = "zerocopy", derive(AsBytes, FromBytes))]
 #[cfg_attr(feature = "get_size", derive(GetSize))]
