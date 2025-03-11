@@ -42,6 +42,8 @@ pub(crate) mod arch;
 #[cfg_attr(feature = "rkyv", archive(resolver = "F16Resolver"))]
 #[cfg_attr(feature = "bytemuck", derive(Zeroable, Pod))]
 #[cfg_attr(feature = "zerocopy", derive(AsBytes, FromBytes))]
+#[cfg_attr(feature = "get_size", derive(get_size::GetSize))]
+#[cfg_attr(feature = "bincode", derive(bincode::Encode, bincode::Decode))]
 #[cfg_attr(kani, derive(kani::Arbitrary))]
 pub struct f16(u16);
 
